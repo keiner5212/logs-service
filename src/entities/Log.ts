@@ -21,7 +21,7 @@ export class Log {
 		return new Log(
 			json.creator,
 			json.message,
-			json.created_at
+			json.created_at || "",
 		)
 	}
 

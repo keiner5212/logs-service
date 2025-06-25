@@ -12,7 +12,6 @@ import {
 	ErrorControl,
 	HttpStatusCode,
 } from "../constants/ErrorControl";
-import { Cache } from "../utils/cache";
 
 config();
 
@@ -43,7 +42,6 @@ export class LogsDAO {
 		try {
 			const querySnapshot = await getDocs(collection(db, Log.COLLECTION));
 			const data = querySnapshot.docs.map((doc) => doc.data());
-			Cache.set(Log.COLLECTION, data);
 			return [ErrorControl.SUCCESS, data, HttpStatusCode.Ok];
 		} catch (error) {
 			const msg = "Error getting documents";
