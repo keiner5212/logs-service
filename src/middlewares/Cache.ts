@@ -6,10 +6,7 @@ import { HttpStatusCode } from "../constants/ErrorControl";
 const middlewareDebugger = createDebugger("cache");
 
 export const CheckCache = async (req: Request, res: Response, next: any) => {
-	let cacheKey = req.method + req.originalUrl;
-	if (req.body.user) {
-		cacheKey += req.body.user.id;
-	}
+	const cacheKey = req.method + req.originalUrl;
 	const cachedData = Cache.get(cacheKey);
 	if (cachedData) {
 		middlewareDebugger(`Cache found for ${cacheKey}`);
